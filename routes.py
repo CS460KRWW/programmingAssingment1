@@ -23,6 +23,7 @@ def show_business():
 	#db commands
 		db.session.add(newBusiness)
 		db.session.commit()
+		flash('Data Added', 'success')
 		return redirect(url_for('show_business'))
 	allBusiness = Business.query.all()
 	return render_template('business.html', allBusiness = allBusiness)
@@ -35,6 +36,76 @@ def delete_business(id):
 	db.session.commit()
 	flash('Data Deleted', 'success')
 	return redirect(url_for('show_business'))
+
+
+#display data for checkin table
+@app.route("/show_checkin", methods = ['GET', 'POST'])
+def show_checkin():
+	if (request.method == "POST"):
+	#form to add a new business
+		newCheckin = Checkin(request.form['business_id'],request.form['Friday'])
+	#db commands
+		db.session.add(newCheckin)
+		db.session.commit()
+		flash('Data Added', 'success')
+		return redirect(url_for('show_checkin'))
+	checkin = Checkin.query.all()
+	return render_template('checkin.html', checkin = checkin)
+
+#delete checkin route
+@app.route('/delete_checkin/<string:id>', methods=['POST'])
+def delete_checkin(id):
+	temp = Checkin.query.get(id)
+	db.session.delete(temp)
+	db.session.commit()
+	flash('Data Deleted', 'success')
+	return redirect(url_for('show_checkin'))
+
+#display data for review table
+@app.route("/show_review", methods = ['GET', 'POST'])
+def show_review():
+	if (request.method == "POST"):
+	#form to add a new business
+		newReview = Review(request.form['review_id'],request.form['business_id'],request.form['user_id'],request.form['stars'],request.form['review_text'])
+	#db commands
+		db.session.add(newReview)
+		db.session.commit()
+		flash('Data Added', 'success')
+		return redirect(url_for('show_review'))
+	allReview = Review.query.all()
+	return render_template('review.html', allReview = allReview)
+
+#delete review route
+@app.route('/delete_review/<string:id>', methods=['POST'])
+def delete_review(id):
+	temp = Review.query.get(id)
+	db.session.delete(temp)
+	db.session.commit()
+	flash('Data Deleted', 'success')
+	return redirect(url_for('show_review'))
+
+#display data for user table
+@app.route("/show_user", methods = ['GET', 'POST'])
+def show_user():
+	if (request.method == "POST"):
+	#form to add a new business
+		newUser = User(request.form['user_id'],request.form['name'],request.form['review_count'])
+	#db commands
+		db.session.add(newUser)
+		db.session.commit()
+		flash('Data Added', 'success')
+		return redirect(url_for('show_user'))
+	allUser = User.query.all()
+	return render_template('user.html', allUser = allUser)
+
+#delete user route
+@app.route('/delete_user/<string:id>', methods=['POST'])
+def delete_user(id):
+	temp = User.query.get(id)
+	db.session.delete(temp)
+	db.session.commit()
+	flash('Data Deleted', 'success')
+	return redirect(url_for('show_user'))
 
 
 

@@ -1,4 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <button type="button" onclick="window.location.href='{{ url_for('show_business') }}'" class="btn btn-primary">Business</button>
+<button type="button" onclick="window.location.href='{{ url_for('show_checkin') }}'" class="btn btn-primary">Check In</button>
+<button type="button" onclick="window.location.href='{{ url_for('show_review') }}'" class="btn btn-primary">Review</button>
+<button type="button" onclick="window.location.href='{{ url_for('show_user') }}'" class="btn btn-primary">User</button>
 {% endblock content %}    

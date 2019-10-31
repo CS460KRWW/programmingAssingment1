@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block content %}
+<button type="button" onclick="window.location.href='{{ url_for('home') }}'" class="btn btn-primary">Home</button>
+<div style="margin-top:20px">
+<h3>Enter Data</h3>
+<form method = "POST">
+  <div class="form-group">
+    <label for="business_id">Business ID</label>
+    <input name = "business_id" type="text" class="form-control" id="business_id"></div>
+  <div class="form-group">
+    <label for="Friday">Active</label>
+    <input name = "Friday" type="number" class="form-control" id="Friday"></div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+</div>
+<div style="margin-top:20px">
+<table class="table">
+    <thead>
+        <tr>
+            <th>Business ID</th>
+            <th>Friday</th>                  
+        <tr>
+    </thead>
+    <tbody>
+        {% for b in checkin %}
+        <tr>
+            <td>{{ b.business_id }}</td>
+            <td>{{ b.Friday }}</td>
+            <td>
+                <form action = "{{url_for('delete_checkin', id=b.business_id)}}", method="post">
+                    <input type="hidden" name = "_method" value = "DELETE">
+                <button type="submit" class="btn btn-danger">Delete</button></form></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock content %}

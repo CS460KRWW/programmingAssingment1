@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block content %}
+<button type="button" onclick="window.location.href='{{ url_for('home') }}'" class="btn btn-primary">Home</button>
+<div style="margin-top:20px">
+<h3>Enter Data</h3>
+<form method = "POST">
+
+  <div class="form-group">
+    <label for="user_id">User ID</label>
+    <input name = "user_id" type="text" class="form-control" id="user_id"></div>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input name = "name" type="text" class="form-control" id="name"></div>
+
+  <div class="form-group">
+    <label for="review_count">Review Count</label>
+    <input name = "review_count" type="number" class="form-control" id="review_count"></div>
+
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+</div>
+<div style="margin-top:20px">
+<table class="table">
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Name</th>       
+            <th>Review Count</th>    
+        <tr>
+    </thead>
+    <tbody>
+        {% for b in allUser %}
+        <tr>
+            <td>{{ b.user_id }}</td>
+            <td>{{ b.name }}</td>
+            <td>{{ b.review_count }}</td>
+            <td>
+                <form action = "{{url_for('delete_user', id=b.user_id)}}", method="post">
+                    <input type="hidden" name = "_method" value = "DELETE">
+                <button type="submit" class="btn btn-danger">Delete</button></form></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock content %}

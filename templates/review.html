@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block content %}
+<button type="button" onclick="window.location.href='{{ url_for('home') }}'" class="btn btn-primary">Home</button>
+<div style="margin-top:20px">
+<h3>Enter Data</h3>
+<form method = "POST">
+
+  <div class="form-group">
+    <label for="review_id">Review ID</label>
+    <input name = "review_id" type="text" class="form-control" id="review_id"></div>
+  <div class="form-group">
+    <label for="business_id">Business ID</label>
+    <input name = "business_id" type="text" class="form-control" id="business_id"></div>
+
+  <div class="form-group">
+    <label for="user_id">User ID</label>
+    <input name = "user_id" type="text" class="form-control" id="user_id"></div>
+  <div class="form-group">
+    <label for="stars">Stars</label>
+    <input name = "stars" type="number" class="form-control" id="stars"></div>
+
+  <div class="form-group">
+    <label for="review_text">Review</label>
+    <input name = "review_text" type="text" class="form-control" id="review_text"></div>
+
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+</div>
+<div style="margin-top:20px">
+<table class="table">
+    <thead>
+        <tr>
+            <th>Review ID</th>
+            <th>Business ID</th>       
+            <th>User ID</th>
+            <th>Stars</th>     
+            <th>Review</th>          
+        <tr>
+    </thead>
+    <tbody>
+        {% for b in allReview %}
+        <tr>
+            <td>{{ b.review_id }}</td>
+            <td>{{ b.business_id }}</td>
+            <td>{{ b.user_id }}</td>
+            <td>{{ b.stars }}</td>
+            <td>{{ b.review_text }}</td>
+            <td>
+                <form action = "{{url_for('delete_review', id=b.review_id)}}", method="post">
+                    <input type="hidden" name = "_method" value = "DELETE">
+                <button type="submit" class="btn btn-danger">Delete</button></form></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock content %}
