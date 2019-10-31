@@ -7,7 +7,7 @@ from sqlalchemy.ext.automap import automap_base
 
 app = Flask(__name__)
 
-
+app.config['SECRET_KEY'] = '7429e37abbb9530cce0310c81e672614'
 #relative path to current file
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tables.db'
 

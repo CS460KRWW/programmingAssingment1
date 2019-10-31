@@ -1,6 +1,35 @@
 {% extends "layout.html" %}
 {% block content %}
-<div>
+<button type="button" onclick="window.location.href='{{ url_for('home') }}'" class="btn btn-primary">Home</button>
+<div style="margin-top:20px">
+<h3>Enter Data</h3>
+<form method = "POST">
+  <div class="form-group">
+    <label for="business_id">Business ID</label>
+    <input name = "business_id" type="text" class="form-control" id="business_id"></div>
+  <div class="form-group">
+    <label for="active">Active</label>
+    <input name = "active" type="text" class="form-control" id="active"></div>
+
+  <div class="form-group">
+    <label for="categories">Category</label>
+    <input name = "categories" type="text" class="form-control" id="categories"></div>
+  <div class="form-group">
+    <label for="review_count">Review Count</label>
+    <input name = "review_count" type="number" class="form-control" id="review_count"></div>
+
+  <div class="form-group">
+    <label for="business_name">Business Name</label>
+    <input name = "business_name" type="text" class="form-control" id="business_name"></div>
+  <div class="form-group">
+    <label for="stars">Stars</label>
+    <input name = "stars" type="number" class="form-control" id="stars"></div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+</div>
+<div style="margin-top:20px">
 <table class="table">
     <thead>
         <tr>
@@ -21,6 +50,10 @@
             <td>{{ b.review_count }}</td>
             <td>{{ b.business_name }}</td>
             <td>{{ b.stars }}</td>
+            <td>
+                <form action = "{{url_for('delete_business', id=b.business_id)}}", method="post">
+                    <input type="hidden" name = "_method" value = "DELETE">
+                <button type="submit" class="btn btn-danger">Delete</button></form></td>
         </tr>
         {% endfor %}
     </tbody>
