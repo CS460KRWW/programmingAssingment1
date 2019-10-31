@@ -1,9 +1,4 @@
-<!<!DOCTYPE html>
-<html>
-<head>
-    <title>Hello</title>
-</head>
-<body>
-<h1>I love Kelly Ruan</h1>		
-</body>
-</html>
+{% extends "layout.html" %}
+{% block content %}
+<button type="button" onclick="window.location.href='{{ url_for('show_business') }}'" class="btn btn-primary">Business</button>
+{% endblock content %}    

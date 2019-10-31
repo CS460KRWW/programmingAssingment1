@@ -1,6 +1,7 @@
 #where files are loaded and components loaded
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.ext.automap import automap_base
 #import pages
 
 
@@ -16,6 +17,12 @@ app.static_folder = 'static'
 
 #database instance
 db = SQLAlchemy(app)
+
+Base = automap_base()
+Base.prepare(db.engine, reflect = True)
+
+business = Base.classes.Business 
+
 
 #no circular imports
 from codebase import routes

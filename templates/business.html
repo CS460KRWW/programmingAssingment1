@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+<div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Business ID</th>
+            <th>Active</th>
+            <th>Category</th>
+            <th>Review Count</th>
+            <th>Business Name</th>
+            <th>Stars</th>                    
+        <tr>
+    </thead>
+    <tbody>
+        {% for b in allBusiness %}
+        <tr>
+            <td>{{ b.business_id }}</td>
+            <td>{{ b.active }}</td>
+            <td>{{ b.categories }}</td>
+            <td>{{ b.review_count }}</td>
+            <td>{{ b.business_name }}</td>
+            <td>{{ b.stars }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock content %}
