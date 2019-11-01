@@ -4,9 +4,21 @@
 
 <div style="margin-top:40px">
 
-{{sqlstr}}
-
 
 
 </div>
+<div style="margin-top:40px">
+<table class="table">
+    <thead>
+        <tr>
+        	{%for k in sqlq.keys()%}
+            <th>{{k}}</th>   
+            {% endfor %}            
+        <tr>
+    </thead>
+</table>
+</div>
+{%for k in list(sqlq)%}
+	{{k}}
+{% endfor %}
 {% endblock content %}

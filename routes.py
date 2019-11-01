@@ -12,12 +12,7 @@ from codebase.query import *
 def home():
 	#can potentially query
 	if (request.method == "POST"):
-
-		print(request.form["USERSQL"])
-
-		# sqlstrs = "select * from Review;"
-
-		return redirect(url_for('output'))
+		return redirect(url_for('output', code=307))
 
 	return render_template('home.html')
 
@@ -117,4 +112,9 @@ def delete_user(id):
 
 @app.route('/output', methods=['GET', 'POST'])
 def output():
-	return render_template('output.html')
+	t = request.form.get('USERSQL')
+
+	#making the sqlquery with sqlalchemy
+	q = db.engine.execute(t)
+
+	return render_template('output.html', sqlq = q)
