@@ -5,9 +5,10 @@
 <div style="margin-top:40px">
 
 
-
 </div>
 <div style="margin-top:40px">
+
+
 <table class="table">
     <thead>
         <tr>
@@ -16,9 +17,17 @@
             {% endfor %}            
         <tr>
     </thead>
+    <tbody>
+        {% for v in sqlq.fetchall() %}
+        <tr>
+        	{% for c in v%}
+            	<td>{{c}}</td>
+        	{% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
 </div>
-{%for k in list(sqlq)%}
-	{{k}}
-{% endfor %}
+
 {% endblock content %}
+

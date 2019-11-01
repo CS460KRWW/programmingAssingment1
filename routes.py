@@ -118,3 +118,11 @@ def output():
 	q = db.engine.execute(t)
 
 	return render_template('output.html', sqlq = q)
+
+
+
+
+
+
+
+
