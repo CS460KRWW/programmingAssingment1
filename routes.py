@@ -114,10 +114,22 @@ def delete_user(id):
 def output():
 	t = request.form.get('USERSQL')
 
+	lookup = {t : "Customized Query",
+	"select u.name from User u where u.review_count > 0;": "Display all users that have at least 1 review.",
+	"select u.name from User u where u.review_count <= 2;" : "Display the name of the users that have made 2 reviews or less.",
+	"select b.business_name from Business b where b.active = 'FALSE';" : "Display all inactive businesses.",
+	"select b.business_name from Business b where b.business_name like '%pizza%';": "Display the names of all pizza restaurants that have a rating of 4 stars or above.",
+	"select count(*) from Checkin c, Business b where b.business_id = c.business_id and c.Friday > 0;":"Display the number of stores that had at least one check-in on Friday.",
+	"select r.review_text from Business b, Review r where b.business_id = r.business_id and b.business_name like 'Arcadia Tavern';" : "Display the text of all reviews made for the Arcadia Tavern.",
+	"select distinct b.business_name from Business b, Review r where b.business_id = r.business_id and r.stars < 3;" : "Display the names of the restaurants that have taken at least one 1-star or 2-star review.",
+	"select avg(b.stars), sum(b.review_count) from Business b where b.business_name like 'KFC';":"Display the average rating and total number of reviews of all KFC stores.",
+	"select b.business_id from Business b order by b.review_count desc limit 10;":"Display a list of the ids of the top 10 stores in terms of the number of reviews they have received.",
+	"select u.name from User u order by u.review_count desc limit 1;": "Display the name of the user that has made the most reviews."}
+
 	#making the sqlquery with sqlalchemy
 	q = db.engine.execute(t)
 
-	return render_template('output.html', sqlq = q)
+	return render_template('output.html', sqlq = q, name = lookup[t])
 
 
 
