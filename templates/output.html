@@ -1,33 +1,26 @@
 {% extends "layout.html" %}
 {% block content %}
 <button type="button" onclick="window.location.href='{{ url_for('home') }}'" class="btn btn-primary">Home</button>
-
 <div style="margin-top:40px">
-
-
 </div>
 <div style="margin-top:40px">
-
-
-<table class="table">
-    <thead>
-        <tr>
-        	{%for k in sqlq.keys()%}
-            <th>{{k}}</th>   
-            {% endfor %}            
-        <tr>
-    </thead>
-    <tbody>
-        {% for v in sqlq.fetchall() %}
-        <tr>
-        	{% for c in v%}
-            	<td>{{c}}</td>
-        	{% endfor %}
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <table class="table">
+        <thead>
+            <tr>
+                {%for k in sqlq.keys()%}
+                <th>{{k}}</th>
+                {% endfor %}
+            <tr>
+        </thead>
+        <tbody>
+            {% for v in sqlq.fetchall() %}
+            <tr>
+                {% for c in v%}
+                <td>{{c}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
-
 {% endblock content %}
-

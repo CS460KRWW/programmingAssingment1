@@ -10,16 +10,28 @@
 </div>
 <div style="margin-top:40px">
     <h3>Assigned Queries</h3>
-    <button type="button" onclick="window.location.href='{{ url_for('show_business') }}'" class="btn btn-outline-info">1</button>
-    <button type="button" class="btn btn-outline-info">2</button>
-    <button type="button" class="btn btn-outline-info">3</button>
-    <button type="button" class="btn btn-outline-info">4</button>
-    <button type="button" class="btn btn-outline-info">5</button>
-    <button type="button" class="btn btn-outline-info">6</button>
-    <button type="button" class="btn btn-outline-info">7</button>
-    <button type="button" class="btn btn-outline-info">8</button>
-    <button type="button" class="btn btn-outline-info">9</button>
-    <button type="button" class="btn btn-outline-info">10</button>
+
+    <form method = "POST" action="{{url_for('output')}}">
+        <button type="submit" name="USERSQL" value="select u.name from User u where u.review_count > 0;" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info">1</button>
+
+        <button type="submit" name="USERSQL" value="select u.name from User u where u.review_count <= 2;" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info">2</button>
+
+        <button type="submit" name="USERSQL" value="select b.business_name from Business b where b.active = 'FALSE';" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info">3</button>
+        
+        <button type="submit" name="USERSQL" value="select b.business_name from Business b where b.business_name like '%pizza%';" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info">4</button>
+
+        <button type="submit" name="USERSQL" value="select count(*) from Checkin c, Business b where b.business_id = c.business_id and c.Friday > 0;" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info">5</button>
+        
+        <button type="submit" name="USERSQL" value="select r.review_text from Business b, Review r where b.business_id = r.business_id and b.business_name like 'Arcadia Tavern';" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info">6</button>
+
+        <button type="submit" name="USERSQL" value="select distinct b.business_name from Business b, Review r where b.business_id = r.business_id and r.stars < 3;" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info">7</button>
+        
+        <button type="submit" name="USERSQL" value="select avg(b.stars), sum(b.review_count) from Business b where b.business_name like 'KFC';" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info">8</button>
+
+        <button type="submit" name="USERSQL" value="select b.business_id from Business b order by b.review_count desc limit 10;" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info">9</button>
+        
+        <button type="submit" name="USERSQL" value="select u.name from User u order by u.review_count desc limit 1;" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info">10</button>
+    </form>
 </div>
 <div style="margin-top:40px">
     <h3>Query Box</h3>
