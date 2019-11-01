@@ -8,9 +8,15 @@ from codebase.query import *
 
 
 @app.route("/")
-@app.route("/home")
+@app.route("/home", methods = ['GET', 'POST'])
 def home():
-	# return render_template('post_business.html')
+	#can potentially query
+	if (request.method == "POST"):
+
+		sqlstr = request.form['userSQL']
+
+		return redirect(url_for('output', sqlstr = sqlstr))
+
 	return render_template('home.html')
 
 
@@ -107,8 +113,6 @@ def delete_user(id):
 	flash('Data Deleted', 'success')
 	return redirect(url_for('show_user'))
 
-
-
-
-
-
+@app.route('/output', methods=['GET', 'POST'])
+def output():
+	return render_template('output.html')

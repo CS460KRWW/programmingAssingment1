@@ -1,7 +1,35 @@
 {% extends "layout.html" %}
 {% block content %}
-<button type="button" onclick="window.location.href='{{ url_for('show_business') }}'" class="btn btn-primary">Business</button>
-<button type="button" onclick="window.location.href='{{ url_for('show_checkin') }}'" class="btn btn-primary">Check In</button>
-<button type="button" onclick="window.location.href='{{ url_for('show_review') }}'" class="btn btn-primary">Review</button>
-<button type="button" onclick="window.location.href='{{ url_for('show_user') }}'" class="btn btn-primary">User</button>
-{% endblock content %}    
+
+<div style="margin-top:0px">
+    <h3>Main Tables</h3>
+    <button type="button" onclick="window.location.href='{{ url_for('show_business') }}'" class="btn btn-primary">Business</button>
+    <button type="button" onclick="window.location.href='{{ url_for('show_checkin') }}'" class="btn btn-primary">Check In</button>
+    <button type="button" onclick="window.location.href='{{ url_for('show_review') }}'" class="btn btn-primary">Review</button>
+    <button type="button" onclick="window.location.href='{{ url_for('show_user') }}'" class="btn btn-primary">User</button>
+</div>
+<div style="margin-top:40px">
+    <h3>Assigned Queries</h3>
+    <button type="button" onclick="window.location.href='{{ url_for('show_business') }}'" class="btn btn-outline-info">1</button>
+    <button type="button" class="btn btn-outline-info">2</button>
+    <button type="button" class="btn btn-outline-info">3</button>
+    <button type="button" class="btn btn-outline-info">4</button>
+    <button type="button" class="btn btn-outline-info">5</button>
+    <button type="button" class="btn btn-outline-info">6</button>
+    <button type="button" class="btn btn-outline-info">7</button>
+    <button type="button" class="btn btn-outline-info">8</button>
+    <button type="button" class="btn btn-outline-info">9</button>
+    <button type="button" class="btn btn-outline-info">10</button>
+</div>
+<div style="margin-top:40px">
+    <h3>Query Box</h3>
+    <form method = "POST">
+        <div class="form-group">
+            <textarea name = "userSQL" type="text" class="form-control" id="userSQL" rows="6" placeholder="Enter your SQL"></textarea>
+        </div>
+
+ 		 <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+
+{% endblock content %}
