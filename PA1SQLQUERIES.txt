@@ -1,0 +1,19 @@
+Query1: select u.name from User u where u.review_count > 0;
+
+Query2: select u.name from User u where u.review_count <= 2;
+
+Query3: select b.business_name from Business b where b.active = "FALSE";
+
+Query4: select b.business_name from Business b where b.business_name like "%pizza%";
+
+Query5: select count(*) from Checkin c, Business b where b.business_id = c.business_id and c.Friday > 0;
+
+Query6: select r.review_text from Business b, Review r where b.business_id = r.business_id and b.business_name like "Arcadia Tavern"; 
+
+Query7: select distinct b.business_name from Business b, Review r where b.business_id = r.business_id and r.stars < 3;
+
+Query8: select avg(b.stars), sum(b.review_count) from Business b where b.business_name like "KFC";
+
+Query9: select b.business_id from Business b order by b.review_count desc limit 10; 
+
+Query10: select u.name from User u order by u.review_count desc limit 1;
