@@ -23,11 +23,10 @@
 </div>
 <div style="margin-top:40px">
     <h3>Query Box</h3>
-    <form method = "POST">
+    <form method = "POST" action="{{url_for('output')}}">
         <div class="form-group">
-            <textarea name = "userSQL" type="text" class="form-control" id="userSQL" rows="6" placeholder="Enter your SQL"></textarea>
+            <textarea name = "USERSQL" type="text" class="form-control" id="userSQL" rows="6" placeholder="Enter your SQL"></textarea>
         </div>
-
  		 <button type="submit" class="btn btn-success">Submit</button>
     </form>
 </div>

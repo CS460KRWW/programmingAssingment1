@@ -13,9 +13,11 @@ def home():
 	#can potentially query
 	if (request.method == "POST"):
 
-		sqlstr = request.form['userSQL']
+		print(request.form["USERSQL"])
 
-		return redirect(url_for('output', sqlstr = sqlstr))
+		# sqlstrs = "select * from Review;"
+
+		return redirect(url_for('output'))
 
 	return render_template('home.html')
 
