@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
-<button type="button" onclick="window.location.href='{{ url_for('home') }}'" class="btn btn-primary">Home</button>
+<main style="text-align: left;">
+<button style="margin:0px;" type="button" onclick="window.location.href='{{ url_for('home') }}'" class="btn btn-primary">Home</button>
 <div style="margin-top:20px">
 <h3>Enter Data</h3>
 <form method = "POST">
@@ -21,7 +22,7 @@
         <tr>
             <th>Business ID</th>
             <th>Friday</th>                  
-        <tr>
+        </tr>
     </thead>
     <tbody>
         {% for b in checkin %}
@@ -37,4 +38,5 @@
     </tbody>
 </table>
 </div>
+</main>
 {% endblock content %}

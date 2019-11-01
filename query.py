@@ -1,4 +1,4 @@
-from codebase import db
+from . import db
 
 
 """make the business table"""

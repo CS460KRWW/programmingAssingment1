@@ -1,10 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
+<main style="text-align: left;">
 <button type="button" onclick="window.location.href='{{ url_for('home') }}'" class="btn btn-primary">Home</button>
 <div style="margin-top:40px">
 </div>
 <div style="margin-top:40px">
-	<h3>{{name}}</h3>
+    <h3>{{name}}</h3>
 
     <table class="table">
         <thead>
@@ -12,7 +13,7 @@
                 {%for k in sqlq.keys()%}
                 <th>{{k}}</th>
                 {% endfor %}
-            <tr>
+            </tr>
         </thead>
         <tbody>
             {% for v in sqlq.fetchall() %}
@@ -25,4 +26,5 @@
         </tbody>
     </table>
 </div>
+</main>
 {% endblock content %}

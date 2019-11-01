@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
-<button type="button" onclick="window.location.href='{{ url_for('home') }}'" class="btn btn-primary">Home</button>
-<div style="margin-top:20px">
+<main style="text-align: left;">
+<button style="margin:0px;" type="button" onclick="window.location.href='{{ url_for('home') }}'" class="btn btn-primary">Home</button>
+<div style="margin-top:20px;">
 <h3>Enter Data</h3>
 <form method = "POST">
   <div class="form-group">
@@ -39,7 +40,7 @@
             <th>Review Count</th>
             <th>Business Name</th>
             <th>Stars</th>                    
-        <tr>
+        </tr>
     </thead>
     <tbody>
         {% for b in allBusiness %}
@@ -59,4 +60,5 @@
     </tbody>
 </table>
 </div>
+</main>
 {% endblock content %}

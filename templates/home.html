@@ -1,46 +1,69 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<div style="margin-top:0px">
+<main>
+    <h1> Restaurant Reviewing Application </h1>
+
+<div>
     <h3>Main Tables</h3>
-    <button type="button" onclick="window.location.href='{{ url_for('show_business') }}'" class="btn btn-primary">Business</button>
-    <button type="button" onclick="window.location.href='{{ url_for('show_checkin') }}'" class="btn btn-primary">Check In</button>
-    <button type="button" onclick="window.location.href='{{ url_for('show_review') }}'" class="btn btn-primary">Review</button>
-    <button type="button" onclick="window.location.href='{{ url_for('show_user') }}'" class="btn btn-primary">User</button>
+    <button type="button" onclick="window.location.href='{{ url_for('show_business') }}'" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Show/Update Businesses"> Business
+    </button>
+    <button type="button" onclick="window.location.href='{{ url_for('show_checkin') }}'" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Show/Update Check Ins" >Check In</button>
+    <button type="button" onclick="window.location.href='{{ url_for('show_review') }}'" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Show/Update Reviews" >Review</button>
+    <button type="button" onclick="window.location.href='{{ url_for('show_user') }}'" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Show/Update Users" >User</button>
 </div>
-<div style="margin-top:40px">
+<div> 
     <h3>Assigned Queries</h3>
 
     <form method = "POST" action="{{url_for('output')}}">
-        <button type="submit" name="USERSQL" value="select u.name from User u where u.review_count > 0;" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info">1</button>
+        <button type="submit" name="USERSQL" value="select u.name from User u where u.review_count > 0;" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info" 
+            data-toggle="tooltip" data-placement="bottom" title= "Display all users that have at least 1 review."
+            >1</button>
 
-        <button type="submit" name="USERSQL" value="select u.name from User u where u.review_count <= 2;" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info">2</button>
+        <button type="submit" name="USERSQL" value="select u.name from User u where u.review_count <= 2;" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info"
+        data-toggle="tooltip" data-placement="bottom" title="Display the name of the users that have made 2 reviews or less."
+        >2</button>
 
-        <button type="submit" name="USERSQL" value="select b.business_name from Business b where b.active = 'FALSE';" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info">3</button>
+        <button type="submit" name="USERSQL" value="select b.business_name from Business b where b.active = 'FALSE';" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info"
+        data-toggle="tooltip" data-placement="bottom" title="Display all inactive businesses."
+        >3</button>
         
-        <button type="submit" name="USERSQL" value="select b.business_name from Business b where b.business_name like '%pizza%';" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info">4</button>
+        <button type="submit" name="USERSQL" value="select b.business_name from Business b where b.business_name like '%pizza%';" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info"
+        data-toggle="tooltip" data-placement="bottom" title="Display all pizza restaurants with at least 4 stars."
+        >4</button>
 
-        <button type="submit" name="USERSQL" value="select count(*) from Checkin c, Business b where b.business_id = c.business_id and c.Friday > 0;" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info">5</button>
+        <button type="submit" name="USERSQL" value="select count(*) from Checkin c, Business b where b.business_id = c.business_id and c.Friday > 0;" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info"
+            data-toggle="tooltip" data-placement="bottom" title="Display number of stores that had at least one check-in on Friday."
+            >5</button>
         
-        <button type="submit" name="USERSQL" value="select r.review_text from Business b, Review r where b.business_id = r.business_id and b.business_name like 'Arcadia Tavern';" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info">6</button>
+        <button type="submit" name="USERSQL" value="select r.review_text from Business b, Review r where b.business_id = r.business_id and b.business_name like 'Arcadia Tavern';" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info"
+        data-toggle="tooltip" data-placement="bottom" title="Display all reviews for Arcadia Tavern."
+        >6</button>
 
-        <button type="submit" name="USERSQL" value="select distinct b.business_name from Business b, Review r where b.business_id = r.business_id and r.stars < 3;" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info">7</button>
+        <button type="submit" name="USERSQL" value="select distinct b.business_name from Business b, Review r where b.business_id = r.business_id and r.stars < 3;" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info"
+        data-toggle="tooltip" data-placement="bottom" title="Display all restaurants that have taken at least one 1-star or 2-star review."
+        >7</button>
         
-        <button type="submit" name="USERSQL" value="select avg(b.stars), sum(b.review_count) from Business b where b.business_name like 'KFC';" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info">8</button>
+        <button type="submit" name="USERSQL" value="select avg(b.stars), sum(b.review_count) from Business b where b.business_name like 'KFC';" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info"
+        data-toggle="tooltip" data-placement="bottom" title="Display the average rating and total number of reviews of all KFC stores.">8</button>
 
-        <button type="submit" name="USERSQL" value="select b.business_id from Business b order by b.review_count desc limit 10;" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info">9</button>
+        <button type="submit" name="USERSQL" value="select b.business_id from Business b order by b.review_count desc limit 10;" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info"
+        data-toggle="tooltip" data-placement="bottom" title="Display the ids of the top 10 highest reviewed stores."
+        >9</button>
         
-        <button type="submit" name="USERSQL" value="select u.name from User u order by u.review_count desc limit 1;" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info">10</button>
+        <button type="submit" name="USERSQL" value="select u.name from User u order by u.review_count desc limit 1;" onclick="window.location.href='{{ url_for('output') }}'" class="btn btn-outline-info"
+        data-toggle="tooltip" data-placement="bottom" title="Display the user who has made the most reviews.">10</button>
     </form>
 </div>
-<div style="margin-top:40px">
+<div>
     <h3>Query Box</h3>
     <form method = "POST" action="{{url_for('output')}}">
         <div class="form-group">
             <textarea name = "USERSQL" type="text" class="form-control" id="userSQL" rows="6" placeholder="Enter your SQL"></textarea>
         </div>
- 		 <button type="submit" class="btn btn-success">Submit</button>
+         <button type="submit" class="btn btn-success">Submit</button>
     </form>
 </div>
+</main>
 
 {% endblock content %}
