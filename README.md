@@ -1,5 +1,5 @@
 CS460 Programming Assignment 1 <br>
-By Kelly Ruan (kruan@bu.edu) and Xiayue Wang (xywang3@bu.edu)
+Kelly Ruan (kruan@bu.edu) and Xiayue Wang (xywang3@bu.edu)
 
 To run our code on your local machine, in cmd: <br>
 pip install requirements.txt <br>
