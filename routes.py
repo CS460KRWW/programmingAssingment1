@@ -44,11 +44,19 @@ def delete_business(id):
 #display data for checkin table
 @app.route("/show_checkin", methods = ['GET', 'POST'])
 def show_checkin():
-	if (request.method == "POST"):
-	#form to add a new business
-		newCheckin = Checkin(request.form['business_id'],request.form['Friday'])
-	#db commands
-		db.session.add(newCheckin)
+	if ((request.method == "POST") and (request.form['Friday'] == 'Friday')):
+		#form to add a new checkin
+		business = request.form['business_id']
+
+		# if existing business, update it
+		if (db.session.query(Checkin.business_id).filter_by(business_id = business).scalar() is not None):
+			Checkin.query.filter_by(business_id=business).update({Checkin.Friday: Checkin.Friday+1})
+
+		# else new business in Checkin
+		else:
+			newCheckin = Checkin(request.form['business_id'],1)
+			db.session.add(newCheckin)
+		#db commands
 		db.session.commit()
 		flash('Data Added', 'success')
 		return redirect(url_for('show_checkin'))
