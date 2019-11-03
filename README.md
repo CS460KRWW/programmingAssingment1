@@ -2,7 +2,7 @@ CS460 Programming Assignment 1 <br>
 Kelly Ruan (kruan@bu.edu) and Xiayue Wang (xywang3@bu.edu)
 
 To run our code on your local machine, in cmd: <br>
-pip install requirements.txt <br>
+pip install -r requirements.txt <br>
 Export FLASK_APP=run.py <br>
 flask run 
 
